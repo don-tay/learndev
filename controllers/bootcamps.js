@@ -9,13 +9,31 @@ const asyncHandler = require('../middleware/async');
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
     let query;
     
-    let queryStr = JSON.stringify(req.query);
+    // Copy req.query, if any
+    const reqQuery = { ...req.query };
 
-    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`); // format into str for mongoDB op
+    // Query fields to exclude from reqQuery
+    const removeFields = ['select'];
 
+    // Remove fields from reqQuery
+    removeFields.forEach(field => delete reqQuery[field]);
+
+    // Create query string
+    let queryStr = JSON.stringify(reqQuery);
+
+    // format into str for mongoDB op (ie. prepend with '$')
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+    
     console.log(queryStr);
 
     query = Bootcamp.find(JSON.parse(queryStr));
+
+    // Handle select field queries (NOTE: select queries delimited by ',' with no whitespace. eg. ?select=name,description)
+    if (req.query.select) {
+        // split string value in select key into array delimited by ',' then join array back into single string delimited by whitespace
+        const fields = req.query.select.split(',').join(' ');
+        query = query.select(fields);
+    }
 
     const bootcamps = await query;
     
