@@ -5,7 +5,7 @@ const asyncHandler = require('../middleware/async');
 
 // @desc    Get all bootcamps
 // @route   GET /api/v1/bootcamps
-// @acess   Public
+// @access   Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
     let query;
     
@@ -80,7 +80,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
 
 // @desc    Get single bootcamps
 // @route   GET /api/v1/bootcamps/:id
-// @acess   Public
+// @access   Public
 exports.getBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
     
@@ -93,7 +93,7 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 
 // @desc    Create new bootcamp
 // @route   POST /api/v1/bootcamps
-// @acess   Private
+// @access   Private
 exports.createBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.create(req.body);
     
@@ -121,7 +121,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
 
 // @desc    Delete bootcamp
 // @route   DELETE /api/v1/bootcamps/:id
-// @acess   Private
+// @access   Private
 exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
         const bootcamp = await Bootcamp.findByIdAndDelete(req.params.id);
     
@@ -134,7 +134,7 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 
 // @desc    Get all bootcamps within a radius from give zipcode
 // @route   GET /api/v1/bootcamps/radius/:zipcode/:distance
-// @acess   Private
+// @access   Private
 exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
     const { zipcode, distance } = req.params;
 
