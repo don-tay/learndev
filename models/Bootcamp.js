@@ -129,6 +129,15 @@ BootcampSchema.pre('save', async function(next) {
   next();
 });
 
+// Cascade delete courses when bootcamp is deleted (Since bootcamp has one-to-many relationship to courses)
+// NOTE: Bootcamp deletion must be done using mongoose' remove method, as input in 1st argument below. findByIdAndDelete will not work.
+BootcampSchema.pre('remove', async function(next) {
+  console.log(`Courses being removed from bootcamp ${this._id}`.red);
+  // delete all courses with attr bootcamp having value of to-be-deleted bootcamp's id
+  await this.model('Course').deleteMany({ bootcamp: this._id });
+  next();
+});
+
 // Reverse populate courses to bootcamp using virtuals (see: https://mongoosejs.com/docs/populate.html#populate-virtuals)
 BootcampSchema.virtual('courses', {
   ref: 'Course',
