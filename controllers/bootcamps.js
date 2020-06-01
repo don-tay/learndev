@@ -24,9 +24,10 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
     // format into str for mongoDB op (ie. prepend with '$')
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
     
-    console.log(queryStr);
+    // console.log(queryStr);
 
-    query = Bootcamp.find(JSON.parse(queryStr));
+    // Find query in db, and populate each bootcamp with corresponsing courses (using virtuals, see Bootcamp model)
+    query = Bootcamp.find(JSON.parse(queryStr)).populate('courses');
 
     // Handle select field queries (NOTE: select queries delimited by ',' with no whitespace. eg. ?select=name,description)
     if (req.query.select) {

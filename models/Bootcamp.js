@@ -97,7 +97,10 @@ phone: {
   createdAt: {
     type: Date,
     default: Date.now
-  },
+  }
+}, {
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 // Create bootcamp slug from name
@@ -124,6 +127,14 @@ BootcampSchema.pre('save', async function(next) {
   this.address = undefined;
 
   next();
+});
+
+// Reverse populate courses to bootcamp using virtuals (see: https://mongoosejs.com/docs/populate.html#populate-virtuals)
+BootcampSchema.virtual('courses', {
+  ref: 'Course',
+  localField: '_id',
+  foreignField: 'bootcamp', // refers to course's bootcamp attr
+  justOne: false
 });
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema);
