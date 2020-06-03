@@ -9,6 +9,9 @@ const {
     bootcampPhotoUpload
  } = require('../controllers/bootcamps');
 
+ const Bootcamp = require('../models/Bootcamp');
+ const advancedResults = require('../middleware/advancedResults');
+
 //  Include other resource's routers, to access their endpoints (ie. getCourses)
 const courseRouter = require('./courses');
 
@@ -22,7 +25,8 @@ router.route('/radius/:zipcode/:distance')
 
 router
 .route('/')
-.get(getBootcamps)
+// Passing advancedResults middleware to controller
+.get(advancedResults(Bootcamp, 'courses'), getBootcamps)
 .post(createBootcamp);
 
 router.route('/:id')
