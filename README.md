@@ -12,7 +12,8 @@ Yarn is the recommended package manager for LearnDev.
 
 #### Install all dependencies
 
-##### `yarn install`
+On the command line in the root directory of LearnDev, run 
+```yarn install```
 
 #### Set up environment variables:
 
@@ -34,15 +35,29 @@ Refer to this [guide](https://docs.atlas.mongodb.com/getting-started/) on hostin
 
 Copy the MongoDB Connection String (see [guide](https://docs.atlas.mongodb.com/tutorial/connect-to-your-cluster/)), and paste it into the `MONGO_URI` field in the `config.env` file created.
 
+#### Database population
+
+##### Load seeder files
+
+On the command line in the root directory of LearnDev, run
+```node seeder.js -i```
+
+##### Destroy all data
+
+On the command line in the root directory of LearnDev, run
+```node seeder.js -d```
+
 ### Running the server
 
 #### Run in production
 
-##### `yarn start`
+On the command line in the root directory of LearnDev, run 
+```yarn start```
 
 #### Run in development environment
 
-##### `yarn run dev`
+On the command line in the root directory of LearnDev, run 
+```yarn run dev```
 
 ## Documentation
 
