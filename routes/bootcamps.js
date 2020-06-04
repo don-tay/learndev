@@ -17,6 +17,9 @@ const courseRouter = require('./courses');
 
 const router = express.Router();
 
+// Include protect middleware for protected routes
+const { protect } = require('../middleware/auth');
+
 //  Re-route this particular URI to other resource router
 router.use('/:bootcampId/courses', courseRouter);
 
@@ -27,14 +30,14 @@ router
 .route('/')
 // Passing advancedResults middleware to controller
 .get(advancedResults(Bootcamp, 'courses'), getBootcamps)
-.post(createBootcamp);
+.post(protect, createBootcamp);
 
 router.route('/:id')
 .get(getBootcamp)
-.put(updateBootcamp)
-.delete(deleteBootcamp);
+.put(protect, updateBootcamp)
+.delete(protect, deleteBootcamp);
 
 router.route('/:id/photo')
-.put(bootcampPhotoUpload);
+.put(protect, bootcampPhotoUpload);
 
 module.exports = router;
