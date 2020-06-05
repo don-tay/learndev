@@ -13,7 +13,7 @@ const {
  const router = express.Router({ mergeParams: true });
 
  // Include protect middleware for protected routes
-const { protect } = require('../middleware/auth');
+const { protect, authorise } = require('../middleware/auth');
 
 router.route('/')
 .get(
@@ -22,11 +22,11 @@ router.route('/')
     select: 'name description'
 }),
 getCourses)
-.post(protect, addCourse);
+.post(protect, authorise('publisher', 'admin'), addCourse);
 
 router.route('/:id')
 .get(getCourse)
-.put(protect, updateCourse)
-.delete(protect, deleteCourse);
+.put(protect, authorise('publisher', 'admin'), updateCourse)
+.delete(protect, authorise('publisher', 'admin'), deleteCourse);
 
 module.exports = router;
