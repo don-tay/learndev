@@ -43,7 +43,7 @@ const importData = async () => {
         process.exit();
 
     } catch (err) {
-        console.error(err);
+        console.error(err.toString().red);
         process.exit();
     }
 }
@@ -59,7 +59,7 @@ const deleteData = async () => {
         process.exit();
         
     } catch (err) {
-        console.error(err);
+        console.error(err.toString().red);
         process.exit();
     }
 }
