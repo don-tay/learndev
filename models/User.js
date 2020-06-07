@@ -65,9 +65,9 @@ UserSchema.methods.getResetPasswordToken = function() {
 
     // Hash token and set to resetPasswordToken field of model
     this.resetPasswordToken = crypto
-    .createHash('sha256')
-    .update(resetToken)
-    .digest('hex');
+        .createHash('sha256')
+        .update(resetToken)
+        .digest('hex');
 
     // Set token expiry (ie. expiry set to 10min)
     this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
