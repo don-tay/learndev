@@ -7,10 +7,9 @@ const {
     deleteBootcamp,
     getBootcampsInRadius,
     bootcampPhotoUpload
- } = require('../controllers/bootcamps');
+} = require('../controllers/bootcamps');
 
- const Bootcamp = require('../models/Bootcamp');
- const advancedResults = require('../middleware/advancedResults');
+const Bootcamp = require('../models/Bootcamp');
 
 //  Include other resource's routers, to access their endpoints (ie. getCourses)
 const courseRouter = require('./courses');
@@ -19,6 +18,7 @@ const router = express.Router();
 
 // Include protect middleware for protected routes
 const { protect, authorise } = require('../middleware/auth');
+const advancedResults = require('../middleware/advancedResults');
 
 //  Re-route this particular URI to other resource router
 router.use('/:bootcampId/courses', courseRouter);

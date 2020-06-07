@@ -5,28 +5,28 @@ const {
     addCourse,
     updateCourse,
     deleteCourse
- } = require('../controllers/courses');
+} = require('../controllers/courses');
 
- const Course = require('../models/Course');
- const advancedResults = require('../middleware/advancedResults');
+const Course = require('../models/Course');
 
- const router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true });
 
  // Include protect middleware for protected routes
 const { protect, authorise } = require('../middleware/auth');
+const advancedResults = require('../middleware/advancedResults');
 
 router.route('/')
-.get(
-    advancedResults(Course, {
-    path: 'bootcamp',
-    select: 'name description'
-}),
-getCourses)
-.post(protect, authorise('publisher', 'admin'), addCourse);
+    .get(
+        advancedResults(Course, {
+        path: 'bootcamp',
+        select: 'name description'
+    }),
+    getCourses)
+    .post(protect, authorise('publisher', 'admin'), addCourse);
 
 router.route('/:id')
-.get(getCourse)
-.put(protect, authorise('publisher', 'admin'), updateCourse)
-.delete(protect, authorise('publisher', 'admin'), deleteCourse);
+    .get(getCourse)
+    .put(protect, authorise('publisher', 'admin'), updateCourse)
+    .delete(protect, authorise('publisher', 'admin'), deleteCourse);
 
 module.exports = router;
