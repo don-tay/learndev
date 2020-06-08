@@ -1,0 +1,367 @@
+FORMAT: 1A
+HOST: https://learndev.club/api/v1
+
+# LearnDev API
+
+Backend API for the LearnDev application to manage bootcamps, courses, reviews, users, and authentication## Get Logged In User via Token [/auth/me]
+
+
+### Get Logged In User via Token [GET]
+Get details of user in currently logged in session.
+
++ Response 200 (application/json)
+
+
+## Logout User [/auth/logout]
+
+
+### Logout User [GET]
+Logout and delete token cookie. For current logged in user only.
+
++ Response 200 (application/json)
+
+
+## Delete User [/users/5c8a1d5b0190b214360dc032]
+
+
+### Delete User [DELETE]
+Delete user identified by user id. Permission: Admin.
+
++ Response 200 (application/json)
+
+
+## Get Single Review [/reviews/5d7a514b5d2c12c7449be025]
+
+
+### Get Single Review [GET]
+Get single review identified by review id.
+
++ Response 200 (application/json)
+
+
+## Update Bootcamp [/bootcamps/5ecbea3350a1b20d57d53513]
+
+
+### Update Bootcamp [PUT]
+Update single bootcamp (identified by bootcamp ID) in database. Permission: Admin and Publisher owner of bootcamp.
+
++ Response 200 (application/json)
+
+
+## Login User [/auth/login]
+
+
+### Login User [POST]
+Login user and create token cookie.
+
++ Request (application/json)
+
+        {
+            "email": "admin@gmail.com",
+            "password": "123456"
+        }
+
+
++ Response 200 (application/json)
+
+
+## Get Single Course [/courses/5d725c84c4ded7bcb480eaa0]
+
+
+### Get Single Course [GET]
+Get single course from database identified by course id in request paramater.
+
++ Response 200 (application/json)
+
+
+## Create New Bootcamp [/bootcamps/]
+
+
+### Create New Bootcamp [POST]
+Add new bootcamp to database. Permission: Publisher or Admin.
+
++ Request (application/json)
+
+        {
+            "acceptGi": true,
+            "address": "220 Pawtucket St, Lowell, MA 01854",
+            "careers": [
+                    "Web Development",
+                    "UI/UX",
+                    "Mobile Development"
+            ],
+            "description": "ModernTech has one goal, and that is to make you a rockstar developer and/or designer with a six figure salary. We teach both development and UI/UX",
+            "email": "enroll@moderntech.com",
+            "housing": false,
+            "jobAssistance": true,
+            "jobGuarantee": false,
+            "name": "ModernTech Bootcamp",
+            "phone": "(222) 222-2222",
+            "website": "https://moderntech.com"
+        }
+
+
++ Response 201 (application/json)
+
+
+## Delete Course [/courses/5d725c84c4ded7bcb480eaa0]
+
+
+### Delete Course [DELETE]
+Delete single course from database identified by course id in request paramater. Permission: Admin and Publisher owner of the associated course.
+
++ Response 200 (application/json)
+
+
+## Delete Review [/reviews/5edde72c5c0f240ad233c708]
+
+
+### Delete Review [DELETE]
+Delete review, identified by review id. Permitted to user owner of the review, or admin.
+
++ Response 200 (application/json)
+
+
+## Create User [/users]
+
+
+### Create User [POST]
+Create user. Permission: Admin.
+
++ Request (application/json)
+
+        {
+            "email": "don@gmail.com",
+            "name": "Don Tay",
+            "password": "123456"
+        }
+
+
++ Response 201 (application/json)
+
+
+## Forgot Password [/auth/forgotpassword]
+
+
+### Forgot Password [POST]
+Generate token and send email for forget password request.
+
++ Request (application/json)
+
+        {
+            "email": "john@gmail.com"
+        }
+
+
++ Response 200 (application/json)
+
+
+## Get Single Bootcamp [/bootcamps/5ecbea3350a1b20d57d53513]
+
+
+### Get Single Bootcamp [GET]
+Get single bootcamp identified by bootcamp ID.
+
++ Response 200 (application/json)
+
+
+## Get All Users [/users]
+
+
+### Get All Users [GET]
+Get all user details. Permission: Admin.
+
++ Response 200 (application/json)
+
+
+## Get All Courses [/courses/]
+
+
+### Get All Courses [GET]
+Fetch all courses from database. Including pagination, filtering, etc.
+
++ Response 200 (application/json)
+
+
+## Update Password [/auth/updatepassword]
+
+
+### Update Password [PUT]
+Update logged in user password.
+
++ Response 200 (application/json)
+
+
+## Reset Password [/auth/resetpassword/9cd4383ffdde29ce4850d7752d8fce0e384cca71]
+
+
+### Reset Password [PUT]
+Generate token and send email for forget password request.
+
++ Response 200 (application/json)
+
+
+## Get All Bootcamps In Radius [/bootcamps/radius/02118/10]
+
+
+### Get All Bootcamps In Radius [GET]
+Fetch all bootcamps which fall in radius to a given geolocation.
+
++ Response 200 (application/json)
+
+
+## Delete Bootcamp [/bootcamps/5d725a1b7b292f5f8ceff788]
+
+
+### Delete Bootcamp [DELETE]
+Delete bootcamp (identified by bootcamp ID) from database. Permission: Admin and Publisher owner of bootcamp.
+
++ Response 200 (application/json)
+
+
+## Get Reviews For Bootcamp [/bootcamps/5d725a1b7b292f5f8ceff788/reviews]
+
+
+### Get Reviews For Bootcamp [GET]
+Get all reviews of a bootcamp identified by its bootcamp id.
+
++ Response 200 (application/json)
+
+
+## Update User [/users/5c8a1d5b0190b214360dc032]
+
+
+### Update User [PUT]
+Update user details identified by user id. Permission: Admin.
+
++ Response 200 (application/json)
+
+
+## Update Details [/auth/updatedetails]
+
+
+### Update Details [PUT]
+Update logged in user name and email.
+
++ Response 200 (application/json)
+
+
+## Upload Bootcamp Photo [/bootcamps/5d725a1b7b292f5f8ceff788/photo]
+
+
+### Upload Bootcamp Photo [PUT]
+Upload photo for bootcamp (identified by bootcamp ID). Permission: Admin and Publisher owner of bootcamp.
+
++ Response 200 (application/json)
+
+
+## Get Single User [/users/5c8a1d5b0190b214360dc032]
+
+
+### Get Single User [GET]
+Get single user details identified by user id. Permission: Admin.
+
++ Response 200 (application/json)
+
+
+## Update Course [/courses/5d725c84c4ded7bcb480eaa0]
+
+
+### Update Course [PUT]
+Update single course from database identified by course id in request paramater. Permission: Admin and Publisher owner of the associated course.
+
++ Response 200 (application/json)
+
+
+## Get All Bootcamps [/bootcamps/]
+
+
+### Get All Bootcamps [GET]
+Fetch all bootcamps from database. Including pagination, filtering, etc.
+
++ Response 200 (application/json)
+
+
+## Update Review [/reviews/5edde72c5c0f240ad233c708]
+
+
+### Update Review [PUT]
+Update review, identified by review id. Permitted to user owner of the review, or admin.
+
++ Response 200 (application/json)
+
+
+## Get All Courses For Bootcamp [/bootcamps/5d713995b721c3bb38c1f5d0/courses]
+
+
+### Get All Courses For Bootcamp [GET]
+Fetch all courses for a particular bootcamp, identified by bootcamp id.
+
++ Response 200 (application/json)
+
+
+## Create Review [/bootcamps/5d725a1b7b292f5f8ceff788/reviews]
+
+
+### Create Review [POST]
+Create a review for a bootcamp identified by its bootcamp id. Permission: User and Admin.
+
++ Request (application/json)
+
+        {
+            "rating": "8",
+            "text": "VERY ENJOYABLE",
+            "title": "GREAT BOOTCAMP"
+        }
+
+
++ Response 201 (application/json)
+
+
+## Create New Course [/bootcamps/5d725a1b7b292f5f8ceff788/courses]
+
+
+### Create New Course [POST]
+Add new course to database. Must have an associated bootcamp in request parameter identified by bootcamp id. Permission: Publisher and Admin.
+
++ Request (application/json)
+
+        {
+            "description": "This course will provide you with all of the essentials to become a successful frontend web developer. You will learn to master HTML, CSS and front end JavaScript, along with tools like Git, VSCode and front end frameworks like Vue",
+            "minimumSkill": "beginner",
+            "scholarhipsAvailable": true,
+            "title": "Front End Web Development",
+            "tuition": 8000,
+            "weeks": 8
+        }
+
+
++ Response 201 (application/json)
+
+
+## Register User [/auth/register]
+
+
+### Register User [POST]
+User registration with password encryption.
+
++ Request (application/json)
+
+        {
+            "email": "don@gmail.com",
+            "name": "Don",
+            "password": "123456",
+            "role": "user"
+        }
+
+
++ Response 200 (application/json)
+
+
+## Get All Reviews [/reviews]
+
+
+### Get All Reviews [GET]
+Get all reviews and populate with associated bootcamp name and description.
+
++ Response 200 (application/json)
