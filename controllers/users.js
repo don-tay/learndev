@@ -31,7 +31,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
         success: true,
         data: user
     });
-}); 
+});
 
 // @desc    Update single user
 // @route   PUT /api/v1/auth/users/:id
