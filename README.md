@@ -21,7 +21,7 @@ On the command line in the root directory of LearnDev, run
 
 1. Under directory `/config`, create file `config.env`.
 
-2. Open `sample-config.env` and copy the entire code over to `config.env`.
+2. Open `config.env.env` and copy the entire code over to `config.env`.
 
 3. Under `config.env`, fill in the missing fields and modify existing fields, where necessary.
 
@@ -37,27 +37,25 @@ Copy the MongoDB Connection String (see [guide](https://docs.atlas.mongodb.com/t
 
 #### Database population
 
-##### Load seeder files
-
 On the command line in the root directory of LearnDev, run
-```node seeder.js -i```
+```
+#### Load seeder files
+node seeder.js -i
 
-##### Destroy all data
+#### Destroy all data
+node seeder.js -d
+```
 
-On the command line in the root directory of LearnDev, run
-```node seeder.js -d```
+### Running the Application
 
-### Running the server
-
+On the command line in the root directory of LearnDev:
+```
 #### Run in production
-
-On the command line in the root directory of LearnDev, run 
-```yarn start```
+yarn start
 
 #### Run in development environment
-
-On the command line in the root directory of LearnDev, run 
-```yarn run dev```
+yarn run dev
+```
 
 ## Documentation
 
