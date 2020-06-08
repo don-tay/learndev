@@ -25,6 +25,8 @@ router.route('/')
     .post(protect, authorise('user', 'admin'), addReview);
 
 router.route('/:id')
-    .get(getReview);
+    .get(getReview)
+    .put(protect, authorise('user', 'admin'), updateReview)
+    .delete(protect, authorise('user', 'admin'), deleteReview);
 
 module.exports = router;
