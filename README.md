@@ -37,7 +37,7 @@ Copy the MongoDB Connection String (see [guide](https://docs.atlas.mongodb.com/t
 
 #### Database population
 
-On the command line in the root directory of LearnDev, run
+On the command line in the root directory of LearnDev:
 ```
 #### Load seeder files
 node seeder.js -i
@@ -60,3 +60,6 @@ yarn run dev
 ## Documentation
 
 Stay tuned for the release of LearnDev's API documentation.
+
+- Version: 1.0.0
+- License: MIT
