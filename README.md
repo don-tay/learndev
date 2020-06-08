@@ -12,8 +12,10 @@ Yarn is the recommended package manager for LearnDev.
 
 #### Install all dependencies
 
-On the command line in the root directory of LearnDev, run 
-```yarn install```
+On the command line in the root directory of LearnDev:
+```
+yarn install
+```
 
 #### Set up environment variables:
 
@@ -59,7 +61,8 @@ yarn run dev
 
 ## Documentation
 
-Stay tuned for the release of LearnDev's API documentation.
+[Apiary documentation](https://learndev.docs.apiary.io/)
 
+## License
 - Version: 1.0.0
 - License: MIT
