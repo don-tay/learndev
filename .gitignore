@@ -1,2 +1,8 @@
+# Logs
+yarn-error.log*
+
+# Dependency directories
 node_modules/
+
+# dotenv environment variables files
 config/config.env
