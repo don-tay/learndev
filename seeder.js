@@ -17,28 +17,20 @@ mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
 });
 
 // Read JSON files
-const bootcamps = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/bootcamps.json`, `utf-8`)
-);
+const bootcamps = JSON.parse(fs.readFileSync(`${__dirname}/_data/bootcamps.json`, `utf-8`));
 
-const courses = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/courses.json`, `utf-8`)
-);
+const courses = JSON.parse(fs.readFileSync(`${__dirname}/_data/courses.json`, `utf-8`));
 
-const users = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/users.json`, `utf-8`)
-);
+const users = JSON.parse(fs.readFileSync(`${__dirname}/_data/users.json`, `utf-8`));
 
-const reviews = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/reviews.json`, `utf-8`)
-);
+const reviews = JSON.parse(fs.readFileSync(`${__dirname}/_data/reviews.json`, `utf-8`));
 
 // Import into DB
-const importData = async () => {
+importData = async () => {
     try {
         await Bootcamp.create(bootcamps);
         await Course.create(courses);
@@ -46,16 +38,14 @@ const importData = async () => {
         await Review.create(reviews);
 
         console.log(`Data Imported...`.green.inverse);
-        process.exit();
-
     } catch (err) {
         console.error(err.toString().red);
         process.exit();
     }
-}
+};
 
 // Delete DB
-const deleteData = async () => {
+deleteData = async () => {
     try {
         await Bootcamp.deleteMany();
         await Course.deleteMany();
@@ -63,16 +53,19 @@ const deleteData = async () => {
         await Review.deleteMany();
 
         console.log(`Data Destroyed...`.red.inverse);
-        process.exit();
-        
     } catch (err) {
         console.error(err.toString().red);
         process.exit();
     }
+};
+
+if (process.argv[2] === '-i') {
+    importData().then(() => process.exit());
+} else if (process.argv[2] === '-d') {
+    deleteData().then(() => process.exit());
 }
 
-if(process.argv[2] === '-i') {
-    importData();
-} else if (process.argv[2] === '-d') {
-    deleteData();
-}
+module.exports = {
+    importData,
+    deleteData,
+};
