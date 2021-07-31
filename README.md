@@ -13,6 +13,7 @@ Yarn is the recommended package manager for LearnDev.
 #### Install all dependencies
 
 On the command line in the root directory of LearnDev:
+
 ```
 yarn install
 ```
@@ -40,6 +41,7 @@ Copy the MongoDB Connection String (see [guide](https://docs.atlas.mongodb.com/t
 #### Database population
 
 On the command line in the root directory of LearnDev:
+
 ```
 #### Load seeder files
 node seeder.js -i
@@ -51,12 +53,13 @@ node seeder.js -d
 ### Running the Application
 
 On the command line in the root directory of LearnDev:
+
 ```
 #### Run in production
 yarn start
 
 #### Run in development environment
-yarn run dev
+yarn dev
 ```
 
 ## Documentation
@@ -64,5 +67,6 @@ yarn run dev
 [Apiary documentation](https://learndev.docs.apiary.io/)
 
 ## License
-- Version: 1.0.0
-- License: MIT
+
+-   Version: 1.0.0
+-   License: MIT

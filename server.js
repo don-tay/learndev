@@ -13,9 +13,10 @@ const hpp = require('hpp');
 const cors = require('cors');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
+const resetDataJob = require('./jobs/resetData');
 
 // load env vars
-dotenv.config({ path: './config/config.env'});
+dotenv.config({ path: './config/config.env' });
 
 // Connect to database
 connectDB();
@@ -55,7 +56,7 @@ app.use(xss());
 // Rate limiting
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 100
+    max: 100,
 });
 
 app.use(limiter);
@@ -69,6 +70,11 @@ app.use(cors());
 // Set static folder (ie. so all files can access public folder with './public/' and base directory of URI is public folder)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Cron job for resetting data daily in prod only
+if (process.env.NODE_ENV === 'production') {
+    resetDataJob.start();
+}
+
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
@@ -81,10 +87,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(
-    PORT, 
-    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold)
-);
+const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold));
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
