@@ -1,9 +1,6 @@
 # OS
 .DS_Store
 
-# Logs
-yarn-error.log*
-
 # Dependency directories
 node_modules/
 
