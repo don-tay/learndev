@@ -4,10 +4,6 @@ Backend API for LearnDev, an online programming bootcamp marketplace platform.
 
 ## Getting Started
 
-### Package manager
-
-Yarn is the recommended package manager for LearnDev.
-
 ### First time setup
 
 #### Install all dependencies
@@ -15,7 +11,7 @@ Yarn is the recommended package manager for LearnDev.
 On the command line in the root directory of LearnDev:
 
 ```
-yarn install
+npm i
 ```
 
 #### Set up environment variables:
@@ -56,10 +52,10 @@ On the command line in the root directory of LearnDev:
 
 ```
 #### Run in production
-yarn start
+npm start
 
 #### Run in development environment
-yarn dev
+npm run dev
 ```
 
 ## Documentation
